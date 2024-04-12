@@ -58,6 +58,8 @@ public class GameService {
         this.oldGameID = game.getId();
         return game;
     }
+
+    
     //Дополнительные методы, не использующие DB
     public boolean checkCell(Cell selectedCell, Game game) {
         Cell nearCell = new Cell();
@@ -74,10 +76,13 @@ public class GameService {
         }
 
         //проверка соответствия живой клетки к условиям выживания
-        if (lifeCount == 3 && selectedCell.isLife() || lifeCount == 4 && selectedCell.isLife())return true;//3 или 4 потому как своя клетка тоже считается живой(сделал для корректности результата)
+        //3 или 4 потому как своя клетка тоже считается живой(сделал для корректности результата)
+        if (lifeCount == 3 && selectedCell.isLife() || lifeCount == 4 && selectedCell.isLife())return true;
         //проверка условий для рождения клетки
         return lifeCount == 3 && !selectedCell.isLife();
     }
+
+    
     //проверка на выход за поля
     public boolean checkBorder(Cell selectedCell, Game game) {
         selectedCell.setX(selectedCell.getX() < 1 ? game.getPlayingFieldSize() : selectedCell.getX());
